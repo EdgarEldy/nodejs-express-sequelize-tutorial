@@ -1,0 +1,17 @@
+# IDE specific files #
+.idea/
+
+# Express specific assets #
+public/images
+public/javascripts
+public/stylesheets/
+
+# node_modules
+
+/node_modules
+
+# yarn.lock
+yarn.lock
+
+# package-lock.json
+package-lock.json
