@@ -12,5 +12,9 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1"
-  }
+  },
+  "main": "index.js",
+  "repository": "https://github.com/EdgarEldy/nodejs-express-sequelize-tutorial.git",
+  "author": "Edgar Eldy <ed.eldy21@live.com>",
+  "license": "MIT"
 }
