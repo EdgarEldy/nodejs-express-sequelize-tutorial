@@ -13,13 +13,16 @@
     "express-handlebars": "^5.3.0",
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2"
   },
   "main": "index.js",
   "repository": "https://github.com/EdgarEldy/nodejs-express-sequelize-tutorial.git",
   "author": "Edgar Eldy <ed.eldy21@live.com>",
   "license": "MIT",
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "sequelize-cli": "^6.2.0"
   }
 }
