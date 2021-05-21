@@ -8,6 +8,8 @@ var exphbs = require('express-handlebars');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+//Call categories routes
+var categoriesRouter = require('./routes/categories');
 var app = express();
 
 // view engine setup
