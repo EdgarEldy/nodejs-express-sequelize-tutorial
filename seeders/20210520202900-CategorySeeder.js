@@ -11,6 +11,18 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
      */
+    return queryInterface.bulkInsert("categories", [
+      {
+        category_name: "Alcohols",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+      {
+        category_name: "Lemonades",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    ]);
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -20,5 +32,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
+    return queryInterface.bulkDelete("Users", null, {});
   },
 };
