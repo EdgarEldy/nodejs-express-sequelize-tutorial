@@ -11,3 +11,6 @@ router.get("/categories", async function (req, res, next) {
     });
   });
 });
+
+//Export categories routes
+module.exports = router;
