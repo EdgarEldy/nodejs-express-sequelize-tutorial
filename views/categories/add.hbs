@@ -4,10 +4,13 @@
         <div class="panel-heading">Add a product category</div>
         <div class="panel-body">
             <div class="col-md-6">
+                {{#if message}}
+				<div class="bg-{{ type }}">{{ message }}</div>
+				{{/if}}
                 <form role="form" action="/categories" method="POST">
                     <div class="form-group">
                         <label>Category name :</label>
-                        <input type="text" name="cat_name" class="form-control"
+                        <input type="text" name="category_name" class="form-control"
                                placeholder="" value="">
                     </div>
                     <button type="submit" id="submit" class="btn btn-primary">Save</button>
