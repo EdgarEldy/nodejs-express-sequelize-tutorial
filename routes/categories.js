@@ -46,5 +46,22 @@ router.post("/categories", async function (req, res, next) {
     });
 });
 
+//Get categories/edit view with category data to update
+router.get('/categories/edit/:id', async (req, res, next) => {
+
+  Category.findByPk(req.params.id)
+    .then((data) => {
+      res.render('categories/edit', {
+        data: data
+      });
+    })
+    .catch((err) => {
+      res.render('categories/edit', {
+        type: 'danger',
+        message: 'Category doesn\'t exist'
+      });
+    });
+});
+
 //Export categories routes
 module.exports = router;
