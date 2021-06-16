@@ -104,5 +104,16 @@ router.post('/categories/:id', (req, res, next) => {
     });
 });
 
+//Remove a product category
+router.post('/categories/delete/:id', (req, res, next) => {
+  Category.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then((category) => {
+      res.redirect('/categories');
+    });
+});
 //Export categories routes
 module.exports = router;
