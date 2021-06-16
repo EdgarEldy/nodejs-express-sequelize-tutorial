@@ -17,7 +17,7 @@
     "mysql2": "^2.2.5",
     "sequelize": "^6.6.2"
   },
-  "main": "index.js",
+  "main": "bin/www",
   "repository": "https://github.com/EdgarEldy/nodejs-express-sequelize-tutorial.git",
   "author": "Edgar Eldy <ed.eldy21@live.com>",
   "license": "MIT",
