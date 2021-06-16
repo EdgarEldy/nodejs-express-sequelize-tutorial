@@ -8,6 +8,8 @@ var exphbs = require('express-handlebars');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+//Call categories routes
+var categoriesRouter = require('./routes/categories');
 var app = express();
 
 // view engine setup
@@ -23,6 +25,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+// categories routes
+app.get('/categories', categoriesRouter);
+app.get('/categories/add', categoriesRouter);
+app.post("/categories", categoriesRouter);
+app.get('/categories/edit/:id', categoriesRouter);
+app.post("/categories/:id", categoriesRouter);
+app.post('/categories/delete/:id', categoriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
