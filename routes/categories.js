@@ -63,5 +63,46 @@ router.get('/categories/edit/:id', async (req, res, next) => {
     });
 });
 
+//Update a product category
+router.post('/categories/:id', (req, res, next) => {
+
+  //Applying error validations
+  if (!req.body.category_name) {
+    res.render('categories/edit', {
+      type: 'danger',
+      message: 'Category name can\'t be empty !'
+    });
+    return;
+  }
+
+  //Starting update product category process
+  Category.update(
+    {
+      category_name: req.body.category_name,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then((category) => {
+      if (category == 1) {
+        res.redirect('/categories');
+      } else {
+        res.render('categories/edit', {
+          type: 'danger',
+          message: 'Cannot update category with id=${id} !',
+        });
+      }
+    })
+    .catch((err) => {
+      res.render('categories/edit', {
+        type: 'danger',
+        message: 'Error updating category with id=${id} ',
+      });
+    });
+});
+
 //Export categories routes
 module.exports = router;
