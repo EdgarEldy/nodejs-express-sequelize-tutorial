@@ -38,6 +38,9 @@ app.get('/categories/edit/:id', categoriesRouter);
 app.post("/categories/:id", categoriesRouter);
 app.post('/categories/delete/:id', categoriesRouter);
 
+//Products routes
+app.get('/products', productsRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
