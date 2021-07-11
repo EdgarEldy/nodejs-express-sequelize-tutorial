@@ -10,6 +10,10 @@ var usersRouter = require('./routes/users');
 
 //Call categories routes
 var categoriesRouter = require('./routes/categories');
+
+//Call products routes
+var productsRouter = require('./routes/products');
+
 var app = express();
 
 // view engine setup
