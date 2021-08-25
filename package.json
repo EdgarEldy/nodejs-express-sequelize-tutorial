@@ -16,6 +16,8 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.6.2",
     "sweetalert2": "^11.1.4"
   },
   "main": "bin/www",
