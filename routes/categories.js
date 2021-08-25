@@ -36,6 +36,7 @@ router.post("/categories", async function (req, res, next) {
   // Save a category
   Category.create(category)
     .then((data) => {
+      req.flash("success", "Product category has been saved successfully !");
       res.redirect("categories");
     })
     .catch((err) => {
