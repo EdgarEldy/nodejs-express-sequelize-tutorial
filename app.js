@@ -39,6 +39,9 @@ app.use(
   })
 );
 
+// Setting up connect flash middleware
+app.use(flash());
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
