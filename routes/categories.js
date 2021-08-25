@@ -114,6 +114,7 @@ router.post('/categories/delete/:id', (req, res, next) => {
     }
   })
     .then((category) => {
+      req.flash("success", "Product category has been removed successfully !")
       res.redirect('/categories');
     });
 });
