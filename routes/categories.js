@@ -36,6 +36,7 @@ router.post("/categories", async function (req, res, next) {
   // Save a category
   Category.create(category)
     .then((data) => {
+      req.flash("success", "Product category has been saved successfully !");
       res.redirect("categories");
     })
     .catch((err) => {
@@ -88,6 +89,7 @@ router.post('/categories/:id', (req, res, next) => {
   )
     .then((category) => {
       if (category == 1) {
+        req.flash("success", "Product category has been updated successfully !")
         res.redirect('/categories');
       } else {
         res.render('categories/edit', {
@@ -112,6 +114,7 @@ router.post('/categories/delete/:id', (req, res, next) => {
     }
   })
     .then((category) => {
+      req.flash("success", "Product category has been removed successfully !")
       res.redirect('/categories');
     });
 });
