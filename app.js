@@ -42,6 +42,13 @@ app.use(
 // Setting up connect flash middleware
 app.use(flash());
 
+// Add global variables
+app.use(function (req, res, next) {
+  res.locals.error = req.flash("error");
+  res.locals.succcess = req.flash("succcess");
+  next();
+});
+
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 
