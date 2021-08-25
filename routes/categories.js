@@ -89,6 +89,7 @@ router.post('/categories/:id', (req, res, next) => {
   )
     .then((category) => {
       if (category == 1) {
+        req.flash("success", "Product category has been updated successfully !")
         res.redirect('/categories');
       } else {
         res.render('categories/edit', {
