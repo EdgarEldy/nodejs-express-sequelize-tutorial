@@ -16,6 +16,9 @@ var categoriesRouter = require('./routes/categories');
 //Call products routes
 var productsRouter = require('./routes/products');
 
+//Call customers routes
+var customerRouter = require('./routes/customers');
+
 var app = express();
 
 // view engine setup
