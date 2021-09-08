@@ -88,4 +88,21 @@ router.post("/customers", async function (req, res, next) {
     });
 });
 
+//Get customers/edit view with customer data to update
+router.get('/customers/edit/:id', async (req, res, next) => {
+
+  Customer.findByPk(req.params.id)
+    .then((data) => {
+      res.render('customers/edit', {
+        data: data
+      });
+    })
+    .catch((err) => {
+      res.render('customers/edit', {
+        type: 'danger',
+        message: 'Customer doesn\'t exist'
+      });
+    });
+});
+
 module.exports = router;
