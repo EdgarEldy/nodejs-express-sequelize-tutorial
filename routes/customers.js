@@ -13,6 +13,11 @@ router.get("/customers", async function (req, res, next) {
   });
 });
 
+//Get customers/add view
+router.get("/customers/add", async function (req, res, next) {
+  res.render("customers/add");
+});
+
 
 // Initialize Customer model
 const Customer = db.Customer;
