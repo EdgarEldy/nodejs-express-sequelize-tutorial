@@ -105,4 +105,43 @@ router.get('/customers/edit/:id', async (req, res, next) => {
     });
 });
 
+//Update a customer
+router.post('/customers/:id', (req, res, next) => {
+
+  Customer.update(
+    {
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      tel: req.body.tel,
+      email: req.body.email,
+      address: req.body.address,
+    },
+    {
+      where: {
+        id: req.params.id,
+      },
+    }
+  )
+    .then((customer) => {
+      if (customer == 1) {
+        req.flash(
+          "success",
+          "Customer has been updated successfully !"
+        );
+        res.redirect("/customers");
+      } else {
+        res.render("customers/edit", {
+          type: "danger",
+          message: "Cannot update customer with id=${id} !",
+        });
+      }
+    })
+    .catch((err) => {
+      res.render("customers/edit", {
+        type: "danger",
+        message: "Error updating customer with id=${id} ",
+      });
+    });
+});
+
 module.exports = router;
