@@ -144,4 +144,17 @@ router.post('/customers/:id', (req, res, next) => {
     });
 });
 
+//Remove a customer
+router.post('/customers/delete/:id', (req, res, next) => {
+  Customer.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then((category) => {
+      req.flash("success", "Customer has been removed successfully !")
+      res.redirect('/customers');
+    });
+});
+
 module.exports = router;
