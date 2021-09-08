@@ -74,6 +74,7 @@ app.get('/products', productsRouter);
 
 //Customers routes
 app.get("/customers", customerRouter);
+app.get("/customers/add", customerRouter);
 
 
 // catch 404 and forward to error handler
