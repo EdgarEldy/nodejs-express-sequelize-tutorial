@@ -16,6 +16,9 @@ var categoriesRouter = require('./routes/categories');
 //Call products routes
 var productsRouter = require('./routes/products');
 
+//Call customers routes
+var customerRouter = require('./routes/customers');
+
 var app = express();
 
 // view engine setup
@@ -68,6 +71,14 @@ app.post('/categories/delete/:id', categoriesRouter);
 
 //Products routes
 app.get('/products', productsRouter);
+
+//Customers routes
+app.get("/customers", customerRouter);
+app.get("/customers/add", customerRouter);
+app.post("/customers", customerRouter);
+app.get("/customers/edit/:id", customerRouter);
+app.post("/customers/:id", customerRouter);
+app.post("/customers/delete/:id", customerRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
