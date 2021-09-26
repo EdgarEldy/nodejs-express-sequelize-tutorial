@@ -12,4 +12,15 @@ router.get("/products", async function (req, res, next) {
         });
 });
 
+// Get products/add view with categories
+router.get("/products/add", async function (req, res, next) {
+
+    // Get categories
+    const categories = await Category.findAll();
+
+    res.render("products/add",{
+        categories: categories
+    });
+  });
+
 module.exports = router;
