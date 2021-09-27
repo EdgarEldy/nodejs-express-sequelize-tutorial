@@ -97,4 +97,69 @@ router.get('/products/edit/:id', async (req, res, next) => {
       });
   });
 
+  //Update a product 
+router.post('/products/:id', (req, res, next) => {
+
+    // Check errors
+
+    // Validate category_id
+    if (!req.body.category_id) {
+        res.render("products/add", {
+            type: "danger",
+            message: "Please select the category name !",
+        });
+        return;
+    }
+
+    // Validate product name
+    if (!req.body.product_name) {
+        res.render("products/add", {
+            type: "danger",
+            message: "Please enter the product name!",
+        });
+        return;
+    }
+
+    // Validate unit price
+    if (!req.body.unit_price) {
+        res.render("products/add", {
+            type: "danger",
+            message: "Please enter the unit price!",
+        });
+        return;
+    }
+  
+    //Starting update product process
+    Product.update(
+      {
+        category_id: req.body.category_id,
+        product_name: req.body.product_name,
+        unit_price: req.body.unit_price,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    )
+      .then((product) => {
+        if (product == 1) {
+          req.flash("success", "Product has been updated successfully !")
+          res.redirect('/products');
+        } else {
+          res.render('products/edit', {
+            type: 'danger',
+            message: 'Cannot update product with id=${id} !',
+          });
+        }
+      })
+      .catch((err) => {
+        res.render('products/edit', {
+          type: 'danger',
+          message: 'Error updating product with id=${id} ',
+        });
+      });
+  });
+  
+
 module.exports = router;
