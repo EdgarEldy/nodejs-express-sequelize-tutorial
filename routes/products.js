@@ -76,4 +76,25 @@ router.post("/products", async function (req, res, next) {
         });
 });
 
+//Get products/edit view with products data to update
+router.get('/products/edit/:id', async (req, res, next) => {
+
+    // Load categories
+    const categories = await Category.findAll();
+    
+    Product.findByPk(req.params.id)
+      .then((data) => {
+        res.render('products/edit', {
+          data: data,
+          categories: categories
+        });
+      })
+      .catch((err) => {
+        res.render('products/edit', {
+          type: 'danger',
+          message: 'Product doesn\'t exist'
+        });
+      });
+  });
+
 module.exports = router;
