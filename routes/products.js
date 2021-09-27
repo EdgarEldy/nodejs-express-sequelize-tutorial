@@ -160,6 +160,18 @@ router.post('/products/:id', (req, res, next) => {
         });
       });
   });
-  
+
+  //Remove a product
+router.post('/products/delete/:id', (req, res, next) => {
+  Product.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+    .then((product) => {
+      req.flash("success", "Product has been removed successfully !")
+      res.redirect('/products');
+    });
+});
 
 module.exports = router;
