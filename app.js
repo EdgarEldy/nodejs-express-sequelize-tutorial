@@ -71,6 +71,11 @@ app.post('/categories/delete/:id', categoriesRouter);
 
 //Products routes
 app.get('/products', productsRouter);
+app.get('/products/add', productsRouter);
+app.post('/products', productsRouter);
+app.get('/products/edit/:id', productsRouter);
+app.post('/products/:id', productsRouter);
+app.post('/products/delete/:id', productsRouter);
 
 //Customers routes
 app.get("/customers", customerRouter);
