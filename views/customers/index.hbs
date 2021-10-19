@@ -2,6 +2,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">Customers</div>
         <div class="panel-body">
+            {{#if success}}
+                <p class="alert alert-success w-100 h-100">{{success}}</p>
+            {{/if}}
             <a href="/customers/add" class="btn btn-primary">New</a>
             <table data-toggle="table" data-url="" data-show-refresh="true" data-show-toggle="true"
                 data-show-columns="true" data-search="true" data-select-item-name="toolbar1" data-pagination="true"
