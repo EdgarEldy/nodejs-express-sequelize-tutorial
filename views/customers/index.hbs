@@ -3,7 +3,21 @@
         <div class="panel-heading">Customers</div>
         <div class="panel-body">
             {{#if success}}
-                <p class="alert alert-success w-100 h-100">{{success}}</p>
+                <div class="alert alert-success">
+                    {{success}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+            {{/if}}
+            {{#if error}}
+                <div class="alert alert-danger">
+                    {{error}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
             {{/if}}
             <a href="/customers/add" class="btn btn-primary">New</a>
             <table data-toggle="table" data-url="" data-show-refresh="true" data-show-toggle="true"
