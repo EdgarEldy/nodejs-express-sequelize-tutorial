@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'customer_id',
         onDelete: 'CASCADE'
       });
+
+      // Add relationship to Product model
+      Order.belongsTo(models.Product, {
+        foreignKey: 'product_id',
+        onDelete: 'CASCADE'
+      });
     }
   }
   Order.init({
