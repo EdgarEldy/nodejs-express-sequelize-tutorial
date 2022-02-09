@@ -8,6 +8,22 @@ const Product = db.Product;
 // Initialize Order Model
 const Order = db.Order;
 
-
+//Get orders/index page with customers and products data
+router.get("/orders", async function (req, res, next) {
+    const orders = await Order.findAll({
+        include: [
+            {
+                model: Customer,
+                required: true
+            },
+            {
+                model: Product,
+                required: true
+            }]
+    });
+    res.render("orders/index", {
+        orders: orders,
+    });
+});
 
 module.exports = router;
