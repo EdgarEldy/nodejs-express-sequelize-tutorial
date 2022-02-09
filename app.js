@@ -19,6 +19,9 @@ var productsRouter = require('./routes/products');
 //Call customers routes
 var customerRouter = require('./routes/customers');
 
+// Call orders routes
+var ordersRouter = require('./routes/orders');
+
 var app = express();
 
 // view engine setup
