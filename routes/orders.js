@@ -7,3 +7,7 @@ const Product = db.Product;
 
 // Initialize Order Model
 const Order = db.Order;
+
+
+
+module.exports = router;
