@@ -6,7 +6,11 @@ const Category = db.Category;
 
 //Get products/index page with products data
 router.get("/products", async function (req, res, next) {
-    const products = await Product.findAll({ include: Category });
+    const products = await Product.findAll({
+        include: [{
+            model: Category,
+            required: true
+        }] });
     res.render("products/index", {
         products: products,
     });
