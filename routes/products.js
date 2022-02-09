@@ -6,7 +6,12 @@ const Category = db.Category;
 
 //Get products/index page with products data
 router.get("/products", async function (req, res, next) {
-    const products = await Product.findAll({ include: Category });
+    const products = await Product.findAll({
+        include: [{
+            model: Category,
+            required: true
+        }]
+    });
     res.render("products/index", {
         products: products,
     });
@@ -81,23 +86,23 @@ router.get('/products/edit/:id', async (req, res, next) => {
 
     // Load categories
     const categories = await Category.findAll();
-    
-    Product.findByPk(req.params.id)
-      .then((data) => {
-        res.render('products/edit', {
-          data: data,
-          categories: categories
-        });
-      })
-      .catch((err) => {
-        res.render('products/edit', {
-          type: 'danger',
-          message: 'Product doesn\'t exist'
-        });
-      });
-  });
 
-  //Update a product 
+    Product.findByPk(req.params.id)
+        .then((data) => {
+            res.render('products/edit', {
+                data: data,
+                categories: categories
+            });
+        })
+        .catch((err) => {
+            res.render('products/edit', {
+                type: 'danger',
+                message: 'Product doesn\'t exist'
+            });
+        });
+});
+
+//Update a product
 router.post('/products/:id', (req, res, next) => {
 
     // Check errors
@@ -128,50 +133,50 @@ router.post('/products/:id', (req, res, next) => {
         });
         return;
     }
-  
+
     //Starting update product process
     Product.update(
-      {
-        category_id: req.body.category_id,
-        product_name: req.body.product_name,
-        unit_price: req.body.unit_price,
-      },
-      {
-        where: {
-          id: req.params.id,
+        {
+            category_id: req.body.category_id,
+            product_name: req.body.product_name,
+            unit_price: req.body.unit_price,
         },
-      }
-    )
-      .then((product) => {
-        if (product == 1) {
-          req.flash("success", "Product has been updated successfully !")
-          res.redirect('/products');
-        } else {
-          res.render('products/edit', {
-            type: 'danger',
-            message: 'Cannot update product with id=${id} !',
-          });
+        {
+            where: {
+                id: req.params.id,
+            },
         }
-      })
-      .catch((err) => {
-        res.render('products/edit', {
-          type: 'danger',
-          message: 'Error updating product with id=${id} ',
+    )
+        .then((product) => {
+            if (product == 1) {
+                req.flash("success", "Product has been updated successfully !")
+                res.redirect('/products');
+            } else {
+                res.render('products/edit', {
+                    type: 'danger',
+                    message: 'Cannot update product with id=${id} !',
+                });
+            }
+        })
+        .catch((err) => {
+            res.render('products/edit', {
+                type: 'danger',
+                message: 'Error updating product with id=${id} ',
+            });
         });
-      });
-  });
+});
 
-  //Remove a product
+//Remove a product
 router.post('/products/delete/:id', (req, res, next) => {
-  Product.destroy({
-    where: {
-      id: req.params.id
-    }
-  })
-    .then((product) => {
-      req.flash("success", "Product has been removed successfully !")
-      res.redirect('/products');
-    });
+    Product.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then((product) => {
+            req.flash("success", "Product has been removed successfully !")
+            res.redirect('/products');
+        });
 });
 
 module.exports = router;
