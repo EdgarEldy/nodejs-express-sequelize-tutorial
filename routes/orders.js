@@ -4,6 +4,7 @@ const db = require("../models");
 
 const Customer = db.Customer;
 const Product = db.Product;
+const Category = db.Category;
 
 // Initialize Order Model
 const Order = db.Order;
