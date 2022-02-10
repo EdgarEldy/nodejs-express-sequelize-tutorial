@@ -27,4 +27,19 @@ router.get("/orders", async function (req, res, next) {
     });
 });
 
+// Get orders/add view with customers and categories
+router.get("/orders/add", async function (req, res, next) {
+
+    // Get categories
+    const customers = await Customer.findAll();
+
+    // Get categories
+    const categories = await Category.findAll();
+
+    res.render("orders/add", {
+        customers: customers,
+        categories: categories
+    });
+});
+
 module.exports = router;
