@@ -2,9 +2,23 @@ var express = require("express");
 var router = express.Router();
 const db = require("../models");
 const Category = db.Category;
+const Product = db.Product;
 
 //Get categories/index page with data
 router.get("/categories", async function (req, res, next) {
+
+  var categories = await Category.findAll({
+    attributes: [['category_name', 'dataInvoice']],
+    include : [{
+      model :  Product, as: "Invoices",
+      attributes: [['product_name', 'productInvoiceDetail'], ['unit_price', 'priceInvoiceDetail']]
+    }]
+  });
+  //  var da =  res.end(JSON.stringify(categories[0], null, 2))
+    // console.log(da);
+
+
+
   Category.findAll().then((data) => {
     res.render("categories/index", {
       categories: data,
