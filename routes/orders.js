@@ -42,4 +42,19 @@ router.get("/orders/add", async function (req, res, next) {
     });
 });
 
+// Get products related to a category
+router.get('/orders/getProducts/:cat_id', async (req, res, next) => {
+    const cat_id = req.params.cat_id;
+    const products = await Product.findAll({
+        include: [{
+            model: Category,
+            required: true
+        }],
+        where: {
+            category_id: cat_id
+        }
+    });
+    res.send(products);
+});
+
 module.exports = router;
