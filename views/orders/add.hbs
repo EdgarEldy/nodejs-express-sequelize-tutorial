@@ -17,12 +17,18 @@
                     </div>
                     <div class="form-group">
                         <select name="category_id" id="cat_id" class="form-control">
-                            <option value="">Select a category...</option>
+                            <option value="0">Select a category...</option>
                             {{#each categories}}
                             {{#dataValues }}
                             <option value="{{this.id}}">{{this.category_name}}</option>
                             {{/dataValues}}
                             {{/each}}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="product_id" id="product_id" class="form-control">
+                            <option value="">Select a product...</option>
+
                         </select>
                     </div>
                     <div class="form-group">
