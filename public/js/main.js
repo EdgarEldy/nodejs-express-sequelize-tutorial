@@ -36,3 +36,13 @@ $(function () {
         });
     });
 });
+
+//Calculate the total
+$(function () {
+    $('#qty').on('keyup', function () {
+        var qty = $(this).val();
+        var unit_price = $('.unit-price').val();
+        var total = qty * unit_price;
+        $('#total').val(total);
+    });
+});
