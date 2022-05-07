@@ -18,3 +18,21 @@ $(function () {
         });
     });
 });
+
+// Get unit price by product id using ajax get request
+$(function () {
+    $('#product_id').on('change', function () {
+        var product_id = $(this).val();
+        $.ajax({
+            type: 'GET',
+            async: true,
+            url: '/orders/getUnitPrice/' + product_id,
+            data: {
+                product_id: product_id
+            },
+            success: function (data) {
+                $('.unit-price').val(data.unit_price);
+            }
+        });
+    });
+});
