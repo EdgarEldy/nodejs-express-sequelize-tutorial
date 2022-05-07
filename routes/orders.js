@@ -57,4 +57,11 @@ router.get('/orders/getProducts/:cat_id', async (req, res, next) => {
     res.send(products);
 });
 
+// Get unit price by product id
+router.get('/orders/getUnitPrice/:product_id', async (req, res, next) => {
+    const product_id = req.params.product_id;
+    const unit_price = await Product.findByPk(product_id);
+    res.send(unit_price);
+});
+
 module.exports = router;
