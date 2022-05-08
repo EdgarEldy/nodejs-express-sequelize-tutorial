@@ -17,7 +17,7 @@ module.exports = {
       qty: {
         type: Sequelize.INTEGER
       },
-      grand_total: {
+      total: {
         type: Sequelize.FLOAT
       },
       createdAt: {
