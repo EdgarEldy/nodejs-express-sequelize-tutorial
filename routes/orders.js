@@ -64,4 +64,87 @@ router.get('/orders/getUnitPrice/:product_id', async (req, res, next) => {
     res.send(unit_price);
 });
 
+// Save a new order with validations
+router.post("/orders", async (req, res, next) => {
+
+    // Check errors
+
+    // Validate customer
+    if (!req.body.customer_id) {
+        res.render("orders/add", {
+            type: "danger",
+            message: "Please select the customer name !",
+        });
+        return;
+    }
+
+    // Validate category
+    if (!req.body.category_id) {
+        res.render("orders/add", {
+            type: "danger",
+            message: "Please select the category name !",
+        });
+        return;
+    }
+
+    // Validate product
+    if (!req.body.product_id) {
+        res.render("orders/add", {
+            type: "danger",
+            message: "Please enter the product name!",
+        });
+        return;
+    }
+
+    // Validate the unit price
+    if (!req.body.unit_price) {
+        res.render("orders/add", {
+            type: "danger",
+            message: "Please enter the unit price!",
+        });
+        return;
+    }
+
+    // Validate the quantity
+    if (!req.body.qty) {
+        res.render("orders/add", {
+            type: "danger",
+            message: "Please enter the quantity!",
+        });
+        return;
+    }
+
+
+    // Validate the total
+    if (!req.body.total) {
+        res.render("orders/add", {
+            type: "danger",
+            message: "Please enter the total!",
+        });
+        return;
+    }
+
+    // Get orders data from input
+    const order = {
+        customer_id: req.body.customer_id,
+        product_id: req.body.product_id,
+        qty: req.body.qty,
+        total: req.body.total
+    };
+
+    // Save an order
+    Order.create(order)
+        .then((data) => {
+            req.flash("success", "Order has been saved successfully !");
+            res.redirect("orders");
+        })
+        .catch((err) => {
+            res.render("orders/add", {
+                type: "danger",
+                message: err.message || "Error has been occured. Please try again.",
+            });
+        });
+});
+
+
 module.exports = router;
