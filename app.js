@@ -90,6 +90,10 @@ app.post("/customers/delete/:id", customerRouter);
 
 // Orders endpoints
 app.get("/orders", ordersRouter);
+app.get("/orders/add", ordersRouter);
+app.get('/orders/getProducts/:cat_id', ordersRouter);
+app.get('/orders/getUnitPrice/:product_id', ordersRouter);
+app.post('/orders', ordersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
