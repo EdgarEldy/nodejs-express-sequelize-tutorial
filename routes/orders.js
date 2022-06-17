@@ -149,13 +149,15 @@ router.post("/orders", async (req, res, next) => {
 // Get orders/edit/id view to update
 router.get('/orders/edit/:id', async (req, res, next) => {
 
+    // Get order id
+    let order_id = req.params.id;
     // Load customers
     const customers = await Customer.findAll();
 
     // Load categories
     const categories = await Category.findAll();
 
-    Order.findByPk(req.params.id)
+    Order.findByPk(order_id)
         .then((data) => {
             res.render('orders/edit', {
                 data: data,
