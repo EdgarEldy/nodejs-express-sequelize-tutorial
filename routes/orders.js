@@ -173,4 +173,78 @@ router.get('/orders/edit/:id', async (req, res, next) => {
         });
 });
 
+//Update an order
+router.post('/orders/:id', (req, res, next) => {
+
+    // Check errors
+
+    // Validate customer_id
+    if (!req.body.category_id) {
+        res.render("orders/add", {
+            type: "danger",
+            message: "Please select the customer name !",
+        });
+        return;
+    }
+
+    // Validate product name
+    if (!req.body.product_id) {
+        res.render("orders/add", {
+            type: "danger",
+            message: "Please enter the product name!",
+        });
+        return;
+    }
+
+    // Validate the quantity
+    if (!req.body.qty) {
+        res.render("orders/add", {
+            type: "danger",
+            message: "Please enter the quantity!",
+        });
+        return;
+    }
+
+    // Validate the total
+    if (!req.body.qty) {
+        res.render("orders/add", {
+            type: "danger",
+            message: "Please enter the total!",
+        });
+        return;
+    }
+
+    //Starting update order process
+    Order.update(
+        {
+            customer_id: req.body.customer_id,
+            poduct_id: req.body.poduct_id,
+            qty: req.body.qty,
+            total: req.body.total,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
+    )
+        .then((order) => {
+            if (order == 1) {
+                req.flash("success", "Order has been updated successfully !")
+                res.redirect('/orders');
+            } else {
+                res.render('orders/edit', {
+                    type: 'danger',
+                    message: 'Cannot update order with id=${id} !',
+                });
+            }
+        })
+        .catch((err) => {
+            res.render('orders/edit', {
+                type: 'danger',
+                message: 'Error updating order with id=${id} ',
+            });
+        });
+});
+
 module.exports = router;
