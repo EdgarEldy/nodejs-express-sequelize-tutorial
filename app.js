@@ -96,6 +96,7 @@ app.get('/orders/getUnitPrice/:product_id', ordersRouter);
 app.post('/orders', ordersRouter);
 app.get('/orders/edit/:id', ordersRouter);
 app.post('/orders/:id', ordersRouter);
+app.post('/orders/delete/:id', ordersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
