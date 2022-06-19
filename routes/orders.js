@@ -247,4 +247,17 @@ router.post('/orders/:id', (req, res, next) => {
         });
 });
 
+// Remove an order
+router.post('/orders/delete/:id', async (req, res, next) => {
+    await Order.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then((order) => {
+            req.flash('success', 'Order has been removed successfully !');
+            res.redirect('/orders');
+        });
+});
+
 module.exports = router;
