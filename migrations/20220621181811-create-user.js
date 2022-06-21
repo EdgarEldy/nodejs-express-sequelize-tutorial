@@ -26,6 +26,9 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
+      username: {
+        type: Sequelize.STRING
+      },
       password: {
         type: Sequelize.STRING
       },
