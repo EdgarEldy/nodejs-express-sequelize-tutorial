@@ -260,38 +260,4 @@ router.post('/orders/delete/:id', async (req, res, next) => {
         });
 });
 
-    // Get categories
-    const customers = await Customer.findAll();
-
-    // Get categories
-    const categories = await Category.findAll();
-
-    Order.findByPk(req.params.id, {
-        include: [
-            {
-                model: Customer,
-                required: true
-            },
-            {
-                model: Product,
-                required: true
-            }]
-    })
-        .then((data) => {
-            res.render('orders/edit', {
-                data: data,
-                customers: customers,
-                categories: categories
-            });
-        })
-        .catch((err) => {
-            res.render('orders/edit', {
-                type: 'danger',
-                message: 'Order doesn\'t exist'
-            });
-        });
-});
-
-
-
 module.exports = router;
