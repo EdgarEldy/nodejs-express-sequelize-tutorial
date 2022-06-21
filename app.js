@@ -100,6 +100,9 @@ app.get('/orders/edit/:id', ordersRouter);
 app.post('/orders/:id', ordersRouter);
 app.post('/orders/delete/:id', ordersRouter);
 
+// Roles
+app.get('/roles', rolesRouter);
+
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
