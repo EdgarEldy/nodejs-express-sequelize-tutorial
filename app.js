@@ -22,6 +22,8 @@ var customerRouter = require('./routes/customers');
 // Call orders routes
 var ordersRouter = require('./routes/orders');
 
+// Roles routes
+var rolesRouter = require('./routes/roles');
 var app = express();
 
 // view engine setup
@@ -97,6 +99,9 @@ app.post('/orders', ordersRouter);
 app.get('/orders/edit/:id', ordersRouter);
 app.post('/orders/:id', ordersRouter);
 app.post('/orders/delete/:id', ordersRouter);
+
+// Roles
+app.get('/roles', rolesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
