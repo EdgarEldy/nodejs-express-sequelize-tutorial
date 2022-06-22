@@ -65,6 +65,9 @@ app.use(function (req, res, next) {
 
 app.use("/", indexRouter);
 
+//Users routes
+app.get('/users', usersRouter);
+
 // categories routes
 app.get('/categories', categoriesRouter);
 app.get('/categories/add', categoriesRouter);
