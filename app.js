@@ -7,6 +7,9 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var exphbs = require("express-handlebars");
 
+// Initialize passport
+var passport = require('passport');
+
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
