@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+// Initialize passport and passport-local
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
+
 // Initialize database and User model
 const db = require('../models');
 const User = db.User;
