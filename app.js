@@ -51,10 +51,13 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
     secret: "secret",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
   })
 );
+
+// Setting up user session middleware with passport
+app.use(passport.authenticate('session'));
 
 // Setting up connect flash middleware
 app.use(flash());
