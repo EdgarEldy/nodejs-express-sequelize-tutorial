@@ -48,7 +48,8 @@ router.post('/users', (req, res, next) => {
         res.render('users/register');
     }
 
-    var hashedPassword = bcrypt.hashSync(req.body.password, 10);
+    var salt = bcrypt.genSaltSync(10)
+    var hashedPassword = bcrypt.hashSync(req.body.password, salt)
 
     var user = {
         role_id: req.body.role_id,
@@ -58,6 +59,7 @@ router.post('/users', (req, res, next) => {
         email: req.body.email,
         address: req.body.address,
         username: req.body.username,
+        salt: salt,
         password: hashedPassword,
     }
 
