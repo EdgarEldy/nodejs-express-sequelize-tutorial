@@ -7,7 +7,15 @@
         <div class="login-panel panel panel-default">
             <div class="panel-heading">NODEJS EXPRSS SEQUELIZE TUTORIAL | Authentification</div>
             <div class="panel-body">
-                <form role="form" action="/users/login" method="post">
+                {{#if errorMessage}}
+                    <div class="alert alert-danger">
+                        {{errorMessage}}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                {{/if}}
+                <form role="form" action="/login" method="post">
                     <fieldset>
                         <div class="form-group">
                             <input type="text" class="form-control" name="username"
