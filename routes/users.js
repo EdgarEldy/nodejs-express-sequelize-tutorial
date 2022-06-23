@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var bcrypt = require('bcrypt');
-
 // Initialize database and User model
 const db = require('../models');
+const passport = require("passport");
 const User = db.User;
 const Role = db.Role;
 
@@ -83,5 +83,12 @@ router.get('/users/login', (req, res, next) => {
         layout: false
     });
 });
+
+// Authenticate the user using passport-local
+router.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login',
+    failureMessage: true
+}));
 
 module.exports = router;
