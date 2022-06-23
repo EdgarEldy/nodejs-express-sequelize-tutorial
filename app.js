@@ -7,6 +7,10 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var exphbs = require("express-handlebars");
 
+// Initialize passport
+var passport = require('passport');
+var auth = require('./routes/auth');
+
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
@@ -48,10 +52,16 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
     secret: "secret",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
   })
 );
+
+// Setting up auth middleware using passport-local
+auth(app);
+
+// Setting up user session middleware with passport
+app.use(passport.authenticate('session'));
 
 // Setting up connect flash middleware
 app.use(flash());
@@ -64,7 +74,13 @@ app.use(function (req, res, next) {
 });
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+
+//Users routes
+app.get('/users', usersRouter);
+app.get('/users/register', usersRouter);
+app.post('/users', usersRouter);
+app.get('/users/login', usersRouter);
+app.post('/login', usersRouter);
 
 // categories routes
 app.get('/categories', categoriesRouter);
