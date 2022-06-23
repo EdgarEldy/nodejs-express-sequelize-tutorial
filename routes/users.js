@@ -75,4 +75,11 @@ router.post('/users', (req, res, next) => {
         });
 });
 
+// Get users/login view
+router.get('/users/login', (req, res, next) => {
+    res.render('users/login', {
+        layout: false
+    });
+});
+
 module.exports = router;
