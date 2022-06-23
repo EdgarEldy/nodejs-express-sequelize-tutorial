@@ -7,6 +7,10 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var exphbs = require("express-handlebars");
 
+// Initialize passport
+var passport = require('passport');
+var auth = require('./routes/auth');
+
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 
@@ -22,6 +26,8 @@ var customerRouter = require('./routes/customers');
 // Call orders routes
 var ordersRouter = require('./routes/orders');
 
+// Roles routes
+var rolesRouter = require('./routes/roles');
 var app = express();
 
 // view engine setup
@@ -46,10 +52,16 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
     secret: "secret",
-    resave: true,
-    saveUninitialized: true,
+    resave: false,
+    saveUninitialized: false,
   })
 );
+
+// Setting up auth middleware using passport-local
+auth(app);
+
+// Setting up user session middleware with passport
+app.use(passport.authenticate('session'));
 
 // Setting up connect flash middleware
 app.use(flash());
@@ -62,7 +74,13 @@ app.use(function (req, res, next) {
 });
 
 app.use("/", indexRouter);
-app.use("/users", usersRouter);
+
+//Users routes
+app.get('/users', usersRouter);
+app.get('/users/register', usersRouter);
+app.post('/users', usersRouter);
+app.get('/users/login', usersRouter);
+app.post('/login', usersRouter);
 
 // categories routes
 app.get('/categories', categoriesRouter);
@@ -97,6 +115,9 @@ app.post('/orders', ordersRouter);
 app.get('/orders/edit/:id', ordersRouter);
 app.post('/orders/:id', ordersRouter);
 app.post('/orders/delete/:id', ordersRouter);
+
+// Roles
+app.get('/roles', rolesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
