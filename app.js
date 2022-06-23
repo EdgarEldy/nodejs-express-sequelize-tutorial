@@ -73,6 +73,7 @@ app.use("/", indexRouter);
 
 //Users routes
 app.get('/users', usersRouter);
+app.get('/users/register', usersRouter);
 
 // categories routes
 app.get('/categories', categoriesRouter);
