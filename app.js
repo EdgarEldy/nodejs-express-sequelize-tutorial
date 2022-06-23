@@ -9,6 +9,7 @@ var exphbs = require("express-handlebars");
 
 // Initialize passport
 var passport = require('passport');
+var auth = require('./routes/auth');
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -55,6 +56,9 @@ app.use(
     saveUninitialized: false,
   })
 );
+
+// Setting up auth middleware using passport-local
+auth(app);
 
 // Setting up user session middleware with passport
 app.use(passport.authenticate('session'));
