@@ -15,4 +15,9 @@ router.get('/roles', async (req, res, next) => {
         });
 });
 
+// Get roles/add view
+router.get('/roles/add', (req, res, next) => {
+res.render('roles/add');
+});
+
 module.exports = router;
