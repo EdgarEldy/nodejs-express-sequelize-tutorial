@@ -121,6 +121,7 @@ app.get('/roles', rolesRouter);
 app.get('/roles/add', rolesRouter);
 app.post('/roles', rolesRouter);
 app.get('/roles/edit/:id', rolesRouter);
+app.post('/roles/:id', rolesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
