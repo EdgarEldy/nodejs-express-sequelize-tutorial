@@ -109,4 +109,17 @@ router.post('/roles/:id', (req, res, next) => {
         });
 });
 
+//Remove a role
+router.post('/roles/delete/:id', (req, res, next) => {
+    Role.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+        .then((role) => {
+            req.flash('success', 'Role has been removed successfully !');
+            res.redirect('/roles');
+        });
+});
+
 module.exports = router;
