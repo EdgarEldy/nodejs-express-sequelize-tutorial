@@ -1,9 +1,10 @@
 var express = require('express');
 var router = express.Router();
+var isAuthenticated = require('../helpers/helper').isAuthenticated;
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('home/index');
+router.get('/', isAuthenticated, function (req, res, next) {
+    res.render('home/index');
 });
 
 module.exports = router;
