@@ -67,4 +67,46 @@ router.get('/roles/edit/:id', async (req, res, next) => {
         });
 });
 
+//Update a role
+router.post('/roles/:id', (req, res, next) => {
+
+    //Applying error validations
+    if (!req.body.name) {
+        res.render('roles/edit', {
+            type: 'danger',
+            message: 'Role name can\'t be empty !'
+        });
+        return;
+    }
+
+    //Starting update role process
+    Role.update(
+        {
+            name: req.body.name,
+        },
+        {
+            where: {
+                id: req.params.id,
+            },
+        }
+    )
+        .then((role) => {
+            if (role == 1) {
+                req.flash('success', 'Role has been updated successfully !')
+                res.redirect('/roles');
+            } else {
+                res.render('roles/edit', {
+                    type: 'danger',
+                    message: 'Cannot update role with id=${id} !',
+                });
+            }
+        })
+        .catch((err) => {
+            res.render('roles/edit', {
+                type: 'danger',
+                message: 'Error updating role with id=${id} ',
+            });
+        });
+});
+
 module.exports = router;
