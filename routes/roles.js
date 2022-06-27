@@ -50,4 +50,21 @@ router.post("/roles", async function (req, res, next) {
         });
 });
 
+//Get roles/edit view with role data to update
+router.get('/roles/edit/:id', async (req, res, next) => {
+
+    Role.findByPk(req.params.id)
+        .then((data) => {
+            res.render('roles/edit', {
+                data: data
+            });
+        })
+        .catch((err) => {
+            res.render('roles/edit', {
+                type: 'danger',
+                message: 'Role doesn\'t exist'
+            });
+        });
+});
+
 module.exports = router;
