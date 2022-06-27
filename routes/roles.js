@@ -17,7 +17,37 @@ router.get('/roles', async (req, res, next) => {
 
 // Get roles/add view
 router.get('/roles/add', (req, res, next) => {
-res.render('roles/add');
+    res.render('roles/add');
+});
+
+// Add a new role
+router.post("/roles", async function (req, res, next) {
+    // Check errors
+    if (!req.body.name) {
+        res.render("roles/add", {
+            type: "danger",
+            message: "Role name can not be empty !",
+        });
+        return;
+    }
+
+    // Get role name from input
+    const role = {
+        name: req.body.name,
+    };
+
+    // Save a role
+    Role.create(role)
+        .then((data) => {
+            req.flash('success', 'Role name has been saved successfully !');
+            res.redirect("roles");
+        })
+        .catch((err) => {
+            res.render('roles/add', {
+                type: 'danger',
+                message: err.message || 'Error has been occured. Please try again.',
+            });
+        });
 });
 
 module.exports = router;
