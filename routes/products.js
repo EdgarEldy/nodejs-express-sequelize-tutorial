@@ -87,11 +87,23 @@ router.get('/products/edit/:id', async (req, res, next) => {
     // Load categories
     const categories = await Category.findAll();
 
+    // Get category by id
+    const category = await Product.findAll({
+        include: [{
+            model: Category,
+            required: true
+        }],
+        where: {
+            id: req.params.id
+        }
+    });
+
     Product.findByPk(req.params.id)
         .then((data) => {
             res.render('products/edit', {
                 data: data,
-                categories: categories
+                categories: categories,
+                category: category
             });
         })
         .catch((err) => {
