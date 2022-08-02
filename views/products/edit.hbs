@@ -7,6 +7,11 @@
                 <form role="form" action="/products/{{ data.dataValues.id }}" method="POST">
                     <div class="form-group">
                         <select name="category_id" id="" class="form-control">
+                            {{#each category}}
+                                {{#dataValues}}
+                                    <option value="{{ Category.dataValues.id }}">{{ Category.dataValues.category_name }}</option>
+                                {{/dataValues}}
+                            {{/each}}
                             <option value="">Select a category...</option>
                             {{#each categories}}
                             {{#dataValues }}
