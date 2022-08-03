@@ -7,6 +7,11 @@
                 <form role="form" action="/orders/{{data.dataValues.id}}" method="POST">
                     <div class="form-group">
                         <select name="customer_id" id="customer_id" class="form-control">
+                            {{#each customer}}
+                                {{#dataValues }}
+                                    <option value="{{Customer.dataValues.id}}">{{Customer.dataValues.first_name}} {{Customer.dataValues.last_name}}</option>
+                                {{/dataValues}}
+                            {{/each}}
                             <option value="">Select a customer...</option>
                             {{#each customers}}
                                 {{#dataValues }}
