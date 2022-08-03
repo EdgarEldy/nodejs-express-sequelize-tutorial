@@ -42,8 +42,13 @@
                     </div>
                     <div class="form-group">
                         <label>Unit price :</label>
-                        <input type="text" name="unit_price" class="form-control unit-price" placeholder=""
-                               value="{{Product.dataValues.unit_price}}">
+                        {{#each product}}
+                            {{#dataValues}}
+                                <input type="text" name="unit_price" class="form-control unit-price" placeholder=""
+                                       value="{{Product.dataValues.unit_price}}">
+                            {{/dataValues}}
+                        {{/each}}
+
                     </div>
                     <div class="form-group">
                         <label>Quantity :</label>
