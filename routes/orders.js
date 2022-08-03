@@ -154,6 +154,23 @@ router.get('/orders/edit/:id', async (req, res, next) => {
     // Load customers
     const customers = await Customer.findAll();
 
+    // Get customer data by order id
+    const customer = await Order.findAll({
+        include: [
+            {
+                model: Customer,
+                required: true
+            },
+            {
+                model: Product,
+                required: true
+            }
+        ],
+        where: {
+            id: req.params.id
+        }
+    });
+
     // Load categories
     const categories = await Category.findAll();
 
@@ -162,6 +179,7 @@ router.get('/orders/edit/:id', async (req, res, next) => {
             res.render('orders/edit', {
                 data: data,
                 customers: customers,
+                customer: customer,
                 categories: categories
             })
         })
