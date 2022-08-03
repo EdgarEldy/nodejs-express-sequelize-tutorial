@@ -6,6 +6,11 @@
                 <form role="form" action="/orders/{{data.dataValues.id}}" method="POST">
                     <div class="form-group">
                         <select name="customer_id" id="customer_id" class="form-control">
+                            {{#each customer}}
+                                {{#dataValues }}
+                                    <option value="{{Customer.dataValues.id}}">{{Customer.dataValues.first_name}} {{Customer.dataValues.last_name}}</option>
+                                {{/dataValues}}
+                            {{/each}}
                             <option value="">Select a customer...</option>
                             {{#each customers}}
                                 {{#dataValues }}
@@ -18,29 +23,42 @@
                         <select name="category_id" id="cat_id" class="form-control">
                             <option value="0">Select a category...</option>
                             {{#each categories}}
-                            {{#dataValues }}
-                            <option value="{{this.id}}">{{this.category_name}}</option>
-                            {{/dataValues}}
+                                {{#dataValues }}
+                                    <option value="{{this.id}}">{{this.category_name}}</option>
+                                {{/dataValues}}
                             {{/each}}
                         </select>
                     </div>
                     <div class="form-group">
                         <select name="product_id" id="product_id" class="form-control">
+                            {{#each product}}
+                                {{#dataValues }}
+                                    <option value="{{Product.dataValues.id}}">{{Product.dataValues.product_name}}</option>
+                                {{/dataValues}}
+                            {{/each}}
                             <option value="">Select a product...</option>
 
                         </select>
                     </div>
                     <div class="form-group">
                         <label>Unit price :</label>
-                        <input type="text" name="unit_price" class="form-control unit-price" placeholder="" value="{{Product.dataValues.unit_price}}">
+                        {{#each product}}
+                            {{#dataValues}}
+                                <input type="text" name="unit_price" class="form-control unit-price" placeholder=""
+                                       value="{{Product.dataValues.unit_price}}">
+                            {{/dataValues}}
+                        {{/each}}
+
                     </div>
                     <div class="form-group">
                         <label>Quantity :</label>
-                        <input type="text" name="qty" id="qty" class="form-control" placeholder="" value="{{data.dataValues.qty}}">
+                        <input type="text" name="qty" id="qty" class="form-control" placeholder=""
+                               value="{{data.dataValues.qty}}">
                     </div>
                     <div class="form-group">
                         <label>Total :</label>
-                        <input type="text" name="total" id="total" class="form-control" placeholder="" value="{{data.dataValues.total}}">
+                        <input type="text" name="total" id="total" class="form-control" placeholder=""
+                               value="{{data.dataValues.total}}">
                     </div>
                     <button type="submit" id="submit" class="btn btn-primary">Save</button>
                     <button type="reset" class="btn btn-default">Reset</button>
